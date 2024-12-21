@@ -1,0 +1,531 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --first-color: hsl(208, 92%, 54%);
+  --first-color-alt: hsl(208, 88%, 50%);
+  --title-color: hsl(220, 68%, 4%);
+  --white-color: hsl(0, 0%, 100%);
+  --text-color: hsl(220, 15%, 66%);
+  --body-color: hsl(0, 0%, 100%);
+  --container-color: hsl(220, 50%, 97%);
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: "Montserrat", system-ui;
+  --big-font-size: 1.5rem;
+  --normal-font-size: .938rem;
+  --small-font-size: .813rem;
+  --tiny-font-size: .688rem;
+
+  /*========== Font weight ==========*/
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+}
+
+/* Inicia Barra de navegación */
+.navbar {
+  background-color: var(--first-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10%;
+  height: 85px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.navbar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 35px;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  position: relative;
+  padding: 5px 0;
+  transition: color 0.3s;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: #16879E;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.navbar .link {
+  text-decoration: none;
+  font-weight: bold;
+  color: #1b3039;
+  background-color: #eceff1;
+  padding: 9px 25px;
+  border-radius: 50px;
+  transition: all 0.3s;
+}
+
+.navbar .link:hover {
+  background-color: #e2f1f8;
+  color: #ffbc0e;
+  transform: scale(1.1);
+}
+/* Menú lateral */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -250px; /* Oculto por defecto */
+  width: 250px;
+  height: 100%;
+  background-color: var(--first-color);
+  z-index: 1001;
+  transition: left 0.3s ease;
+  padding-top: 60px;
+}
+
+.side-menu a {
+  color: white;
+  padding: 8px 15px;
+  text-decoration: none;
+  display: block;
+  transition: 0.3s;
+}
+
+.side-menu a:hover {
+  background-color: #16879E;
+}
+
+/* Mostrar el menú lateral al hacer clic */
+.side-menu.open {
+  left: 0;
+}
+
+/* Ícono para abrir el menú lateral */
+.menu-icon {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: white;
+}
+
+.login-btn {
+  background-color: #ffbc0e;
+  padding: 9px 25px;
+  border-radius: 50px;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.login-btn:hover {
+  background-color: #e2f1f8;
+  color: #ffbc0e;
+  transform: scale(1.1);
+}
+      /* Botón para cerrar el menú lateral */
+.close-icon {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close-icon:hover {
+  color: #ffbc0e; /* Cambiar color al pasar el mouse */
+}
+
+/* Termina la barra de navegacion */
+
+/*Inicia */
+/* Portada con imagen y color de fondo */
+.home {
+  position: relative;
+  text-align: left;
+  margin-top: 85px;
+  height: 90vh;
+  background-color: #0d846c; /* Fondo verde */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.home-portada {
+  color: white;
+z-index: 2;
+padding: 20px 10%;
+text-align: left;
+max-width: 60%;
+margin-left: 0;
+margin-right: auto;
+width: 100%;
+box-sizing: border-box;
+line-height: 1.4;
+opacity: 0; /* Inicialmente invisible */
+transform: translateY(50px); /* Desplazar el texto hacia abajo */
+transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s; 
+}
+.home-portada.visible {
+
+opacity: 1; /* Hacer el texto visible */
+transform: translateY(0); /* Restablecer la posición */
+}
+
+.home img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0; /* Imagen debajo de la capa verde */
+}
+
+/* Superposición de color */
+.home .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(13, 132, 108, 0.7); /* Filtro verde */
+  z-index: 1; /* Capa de filtro encima de la imagen */
+}
+
+.home .button {
+  background-color: #ffbc0e;
+  padding: 10px 25px;
+  border-radius: 50px;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease-in-out;
+  margin-top: 10px;
+}
+
+.home .button:hover {
+  background-color: #ff9900;
+  transform: scale(1.05);
+}
+
+
+/* Inicia Apartado de doctores*/
+
+/* Estilo general de la sección de doctores */
+.section-info-doc {
+text-align: center;
+padding: 20px; 
+max-width: 1000px;
+margin: 20px auto; 
+}
+.section-info-doc h2 {
+font-size: 2rem; 
+color: #5c5c60; 
+margin-bottom: 10px; 
+}
+.section-info-doc p {
+font-size: 1.1rem; 
+color: #555;
+max-width: 1200px;
+margin: 0 auto; 
+line-height: 1.6; 
+text-align: justify; 
+}
+.doctors {
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 20px;
+gap: 20px;
+flex-wrap: wrap;
+background-color: #f5f5f5;
+}
+
+/* Estilo de la tarjeta */
+.card {
+width: 320px;
+height: 380px;
+background: #fff;
+border-radius: 10px;
+position: relative;
+display: flex;
+justify-content: center;
+box-shadow: 0 0 20px rgba(0, 0, 0, 0.13);
+opacity: 0; /* Inicialmente invisible */
+transform: translateY(50px); /* Desplazadas hacia abajo */
+transition: opacity 0.5s ease, transform 0.5s ease; /* Transición para la aparición */
+
+}
+/* Clase visible para activar la transición */
+.card.visible {
+opacity: 1; /* Hacer visible la tarjeta */
+transform: translateY(0); /* Restablecer la posición */
+}
+
+/* Estilo del color en la parte superior de la tarjeta (ahora es estático) */
+.card::before {
+content: "";
+position: absolute;
+top: 2%;
+width: 95%;
+height: 120px;
+z-index: 1;
+border-radius: 10px 10px 0 0;
+background: #16879E;
+box-shadow: 0 0 20px rgba(0, 0, 0, 0.13);
+}
+
+/* Eliminar el efecto de movimiento al pasar el cursor */
+.card:hover {
+transform: none; /* Se elimina el movimiento */
+z-index: 10;
+}
+
+/* Estilo de la imagen del doctor */
+.card .img {
+width: 120px;
+height: 120px;
+border-radius: 50%;
+z-index: 10;
+transform: translateY(50px);
+border: 10px solid #fff;
+overflow: hidden;
+position: absolute;
+background: #fff;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+/* Estilo de la imagen dentro del círculo, asegurando que se centre correctamente */
+.card .img img {
+width: 100%; 
+height: 100%; 
+object-fit: cover; /* Esta propiedad mantiene la proporción de la imagen sin estirarla */
+}
+
+/* Estilo para el contenido de la tarjeta */
+.content {
+width: 100%;
+height: 100%;
+transform: translateY(170px);
+display: flex;
+flex-direction: column;
+z-index: 20;
+align-items: center;
+}
+
+/* Estilo de la descripción del doctor */
+.content p {
+margin: 0;
+font-size: 14px;
+color: #777;
+}
+.content h3 {
+ font-size: 1.4rem; 
+
+}
+.box h4 {
+  font-size: 1.4rem; 
+  text-align: center; 
+}
+
+/* Estilo del contenedor de los detalles (experiencia, pacientes) */
+.center {
+width: 100%;
+display: flex;
+justify-content: space-around;
+align-items: center;
+margin-top: 20px;
+}
+
+/* Estilo para las cajas de información (experiencia, pacientes) */
+.box {
+padding: 10px 30px;
+border-radius: 10px;
+text-align: center;
+}
+
+.box:hover {
+background-color: rgba(128, 128, 128, 0.137);
+}
+
+/* Estilo del botón de acción */
+.btn {
+width: 80%;
+padding: 10px;
+border-radius: 10px;
+outline: none;
+border: none;
+transform: translateY(10px);
+background: #ffbc0e;
+color: #fff;
+font-weight: 600;
+box-shadow: 0 0 20px rgba(0, 0, 0, 0.13);
+cursor: pointer;
+transition: all 0.3s ease-in-out;
+}
+
+/* Efecto al pasar el cursor sobre el botón */
+.btn:hover {
+  background-color: #ff9900;
+  transform: scale(1.05);
+}
+
+/*Inicia el diseño del footer*/
+footer {
+background-color: var(--first-color);
+color: white;
+padding: 30px;
+text-align: center;
+margin-top: 50px;
+
+}
+
+.footer-container {
+display: flex;
+justify-content: space-between;
+max-width: 1200px;
+margin: 0 auto;
+flex-wrap: wrap;
+}
+
+.footer-column {
+flex: 1;
+padding: 10px;
+margin: 10px;
+}
+
+.footer-column h4 {
+margin-bottom: 10px;
+font-size: 18px;
+}
+
+.footer-column p {
+font-size: 14px;
+}
+
+.footer-column ul {
+list-style: none;
+padding: 0;
+}
+
+.footer-column ul li {
+margin-bottom: 8px;
+}
+
+.footer-column ul li a {
+text-decoration: none;
+color: white;
+font-size: 14px;
+transition: color 0.3s;
+}
+
+.footer-column ul li a:hover {
+color: #ff9900;
+}
+
+/*Termina el diseño del footer*/
+
+
+/* Media Queries para dispositivos móviles */
+@media (max-width: 768px) {
+/*Portada responsivo*/
+.home {
+  height: 60vh; /* Ajuste para pantallas pequeñas */
+}
+
+
+
+.home-portada {
+  max-width: 90%;  
+  padding: 10px;   
+  text-align: center;  
+  margin-left: auto;   
+  margin-right: auto;  
+}
+
+/*Navbar responsivo*/
+.navbar {
+  flex-direction: row; 
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.nav-links {
+  display: none; /* Ocultar menú en pantallas pequeñas */
+}
+
+.login-btn {
+  display: block; /* Mostrar el botón de login */
+  margin-top: 10px;
+}
+
+.side-menu {
+  top: 85px; 
+}
+.menu-icon {
+  display: block; 
+}
+
+/*Seccion doctores responsivo*/
+.section-info-doc h2 {
+  font-size: 1.5rem; /* Reducir más el tamaño del subtítulo en pantallas pequeñas */
+}
+
+.section-info-doc p {
+  font-size: 0.95rem; /* Reducir más el tamaño de la descripción en pantallas pequeñas */
+  padding: 0 15px; /* Añadir un pequeño espacio a los lados en dispositivos móviles */
+}
+.footer-container {
+  flex-direction: column;
+  align-items: center;
+}
+}

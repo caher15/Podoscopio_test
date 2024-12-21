@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Podología</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/style_Home.css">
+</head>
+<body>
+<header>
+
+    <nav class="navbar">
+        <a href="#" class="logo">Podología</a>
+        <!-- Menú de navegación -->
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Pages</a></li>
+            <li><a href="#">Blog</a></li>
+        </ul>
+        <!-- Botón de Login -->
+        <a href="index.html" class="login-btn">Login</a>
+        <!-- Ícono para abrir el menú lateral -->
+        <span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
+    </nav>
+
+    <!-- Menú lateral -->
+    <div class="side-menu" id="sideMenu">
+        <!-- Las mismas opciones de menú que en el navbar -->
+        <span class="close-icon" onclick="toggleMenu()">&#10005;</span>
+        <a href="#">Home</a>
+        <a href="#">About Us</a>
+        <a href="#">Services</a>
+        <a href="#">Pages</a>
+        <a href="#">Blog</a>
+    </div>
+
+    <div class="home">
+        <div class="overlay"></div>
+        <div class="home-portada">
+            <h1>Bienvenidos</h1>
+            <p>En nuestro sitio web, nos especializamos en ofrecer el contacto de los mejores  podologos de la más alta calidad, siendo profesionales experimentados y un enfoque personalizado, comprometidos a cuidar de la salud de tus pies para que puedas caminar cómodamente todos los días. ¡Tu bienestar es nuestra prioridad!</p>
+            <a href="#" class="button">See Services</a>
+        </div>
+        <img src="assets/img/pd.jpg" alt="Medical Background">
+    </div>
+</header>
+
+  <section class="doctors">
+    <div class="section-info-doc">
+      <h2>Conoce a Nuestros Podólogos Especialistas</h2>
+      <p>En nuestro sitio web, nos especializamos en ofrecer el contacto de los mejores  podologos de la más alta calidad, siendo profesionales experimentados y un enfoque personalizado, comprometidos a cuidar de la salud de tus pies para que puedas caminar cómodamente todos los días. ¡Tu bienestar es nuestra prioridad!</p>
+    </div>
+       
+    
+      <!-- Tarjeta de un doctor -->
+    <article class="card">
+        <div class="img">
+            <img src="assets/img/pd.jpg" alt="Foto del Dr. Juan Pérez">
+        </div>
+        <div class="content">
+            <h3>Dr. Juan Pérez</h3>
+            <p>Especialista en cirugía general</p>
+            <div class="center">
+                <div class="box">
+                    <h4>15</h4>
+                    <p>Años de experiencia</p>
+                </div>
+                <div class="box">
+                    <h4>320</h4>
+                    <p>Pacientes atendidos</p>
+                </div>
+            </div>
+            <button class="btn">Reservar cita</button>
+        </div>
+    </article>
+       <!-- Termina aqui -->
+       
+      <!-- Puedes agregar más tarjetas de doctores aquí -->
+     
+
+      
+
+</section>
+
+<footer>
+    <div class="footer-container">
+      <div class="footer-column">
+        <h4>Acerca de</h4>
+        <p>Somos una empresa comprometida con ofrecer los mejores productos y servicios.</p>
+      </div>
+      <div class="footer-column">
+        <h4>Enlaces útiles</h4>
+        <ul>
+          <li><a href="#">Términos y Condiciones</a></li>
+          <li><a href="#">Política de privacidad</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Redes sociales</h4>
+        <ul class="social-links">
+          <li><a href="#" target="_blank">Facebook</a></li>
+          <li><a href="#" target="_blank">Twitter</a></li>
+          <li><a href="#" target="_blank">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+     <div class="footer-copyright">
+      <p>&copy; 2024 Mi Sitio Web</p>
+    </div>
+  </footer>
+  
+
+<script src="assets/js/funtion.js" defer></script>
+</body>
+</html>
